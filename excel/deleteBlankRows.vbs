@@ -1,6 +1,6 @@
 '*******************************************************************************
 ' delete blank rows
-'   EXCEL‚Ì—]Œv‚È‹ó”’s‚ğíœ.1s–Ú‚Æ1—ñ–Ú‚ÉƒAƒ“ƒJ[‚ğ‚Â‚¯‚Äg—p.
+'   EXCELã®ä½™è¨ˆãªç©ºç™½è¡Œã‚’å‰Šé™¤.1è¡Œç›®ã¨1åˆ—ç›®ã«ã‚¢ãƒ³ã‚«ãƒ¼ã‚’ã¤ã‘ã¦ä½¿ç”¨.
 '******************************************************************************* 
 
 Const xlUp = -4162
@@ -19,7 +19,7 @@ for each arg in args
   fileList = fileList & vbNewLine & arg
 next
 
-' ˆø”‚Ìƒ`ƒFƒbƒNB‘ÎÛƒtƒ@ƒCƒ‹ˆÈŠO‚ª¬‚´‚Á‚Ä‚¢‚éê‡I—¹B
+' å¼•æ•°ã®ãƒã‚§ãƒƒã‚¯ã€‚å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«ä»¥å¤–ãŒæ··ã–ã£ã¦ã„ã‚‹å ´åˆçµ‚äº†ã€‚
 set fobj = CreateObject("Scripting.FileSystemObject")
 for each arg in args
     ext = fobj.GetextensionName(arg)
@@ -37,6 +37,7 @@ for each path in args
     For i = 1 To book.Sheets.Count
         Set objWorksheet = book.Sheets(i)
         If objWorksheet.Visible Then
+            objWorksheet.Activate
             objWorksheet.Range(upperRight).Select
             objWorksheet.Range(oXlsApp.Selection, oXlsApp.Selection.End(xlToLeft)).Select
             objWorksheet.Range(oXlsApp.Selection, oXlsApp.Selection.End(xlDown)).Select
@@ -49,6 +50,7 @@ for each path in args
             
             oXlsApp.Range("A1").Select
         End If
+        book.Sheets(1).Activate
     Next
     book.Save
     book.Close
